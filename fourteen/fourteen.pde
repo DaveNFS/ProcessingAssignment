@@ -15,15 +15,17 @@ int[] years;
 int yearInterval = 10;
 int volumeInterval = 10;
 
+float barWidth = 4;  
 int choice = 4;
 
 PFont plotFont; 
+PFont georgia; 
 
 
 void setup() {
   size(720, 405);
   
-  data = new FloatTable("milk-tea-coffee.tsv");
+  data = new FloatTable("milk-tea-coffee2.tsv");
   rowCount = data.getRowCount();
   columnCount = data.getColumnCount();
   
@@ -46,6 +48,9 @@ void setup() {
   
   plotFont = createFont("SansSerif", 20);
   textFont(plotFont);
+  
+  georgia = createFont("Georgia", 10);
+  
 
   smooth();
 }
@@ -122,6 +127,14 @@ void draw() {
     fill(#5679C1);
     drawDataArea(currentColumn);
   }
+  
+  if(choice == 5)
+  {
+      noStroke();
+      fill(#5679C1);
+    drawDataBars(currentColumn);
+  }
+  
   
   
    drawYearLabels();
@@ -203,7 +216,7 @@ void drawVolumeLabels() {
 }
 
 
-float barWidth = 4;  // Add this line above setup()
+
 
 void drawDataBars(int col) {
   noStroke();
@@ -279,6 +292,7 @@ void drawDataHighlight(int col) {
         fill(0);
         textSize(10);
         textAlign(CENTER);
+        textFont(georgia);
         text(nf(value, 0, 2) + " (" + years[row] + ")", x, y-8);
         textAlign(LEFT);
       }
@@ -304,6 +318,10 @@ void keyPressed() {
   if(key == '4')
   {
     choice = 4; 
+  }
+    if(key == '5')
+  {
+    choice = 5; 
   }
   
   if (key == '[') {
