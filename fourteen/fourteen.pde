@@ -20,6 +20,8 @@ int choice = 4;
 
 PFont plotFont; 
 PFont georgia; 
+PFont xAxisNumericFont;
+PFont allText;
 
 
 void setup() {
@@ -51,6 +53,9 @@ void setup() {
   
   georgia = createFont("Georgia", 10);
   
+  
+  xAxisNumericFont = createFont("Georgia",20);
+  allText = createFont("Verdana",20);
 
   smooth();
 }
@@ -59,8 +64,11 @@ void setup() {
 void draw() {
   background(255);
   
+  textFont(allText);
   drawTitle();
   drawAxisLabels();
+  
+  textFont(xAxisNumericFont);
   drawVolumeLabels();
 
   noStroke();
@@ -148,7 +156,7 @@ void draw() {
 
 void drawTitle() {
   fill(0);
-  textSize(20);
+  textSize(35);
   textAlign(LEFT);
   String title = data.getColumnName(currentColumn);
   text(title, plotX1, plotY1 - 10);
@@ -161,7 +169,15 @@ void drawAxisLabels() {
   textLeading(15);
   
   textAlign(CENTER, CENTER);
-  text("Gallons\nconsumed\nper capita", labelX, (plotY1+plotY2)/2);
+  int x = (int)labelX;     // Location of start of text.
+  int y = (int)(plotY1+plotY2)/2;
+  
+  pushMatrix();
+  translate(x,y);
+  rotate(HALF_PI);
+  translate(-x,-y);
+  text("Gallons consumed per capita", labelX, (plotY1+plotY2)/2);
+  popMatrix();
   textAlign(CENTER);
   text("Year", (plotX1+plotX2)/2, labelY);
 }
