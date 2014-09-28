@@ -15,6 +15,8 @@ int[] years;
 int yearInterval = 10;
 int volumeInterval = 10;
 
+int choice = 4;
+
 PFont plotFont; 
 
 
@@ -62,7 +64,7 @@ void draw() {
   
   
   // drawDataBars(currentColumn);
-  //drawDataArea(currentColumn);
+  // drawDataArea(currentColumn);
   
    // Show line chart 
   fill(255);
@@ -74,6 +76,52 @@ void draw() {
   stroke(#5679C1);
   strokeWeight(5);
   //drawDataPoints(currentColumn);
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  // Keyboard selection 
+  
+  if(choice == 1)
+  {
+    stroke(#5679C1);
+    strokeWeight(5);
+     drawDataPoints(currentColumn);
+  }
+  
+   if(choice == 2)
+  {
+      fill(255);
+    stroke(#5679C1);
+    noFill();
+    strokeWeight(2);
+    drawDataLine(currentColumn); 
+    strokeWeight(5);
+    drawDataPoints(currentColumn);
+    
+  }
+  
+   if(choice == 3)
+  {
+    fill(255);
+    stroke(#5679C1);
+    noFill();
+    strokeWeight(2);
+    drawDataLine(currentColumn);  
+  
+  }
+  
+   if(choice == 4)
+  {
+      noStroke();
+    fill(#5679C1);
+    drawDataArea(currentColumn);
+  }
   
   
    drawYearLabels();
@@ -215,6 +263,24 @@ void drawDataPoints(int col) {
 
 
 void keyPressed() {
+  
+  if(key == '1')
+  {
+    choice = 1; 
+  }
+  if(key == '2')
+  {
+    choice = 2; 
+  }
+  if(key == '3')
+  {
+    choice = 3; 
+  }
+  if(key == '4')
+  {
+    choice = 4; 
+  }
+  
   if (key == '[') {
     currentColumn--;
     if (currentColumn < 0) {
