@@ -62,8 +62,14 @@ void draw() {
   noStroke();
   rect(plotX1, plotY1, plotX2, plotY2);
 
+// adding font
+  textFont(allText);
+
   drawTitle();
   drawAxisLabels();
+  
+  //adding font
+  textFont(xAxisNumericFont);
   
   drawYearLabels();
   drawVolumeLabels();
@@ -76,8 +82,7 @@ void draw() {
 
 void drawTitle() {
   fill(0);
-  // adding font
-  textFont(allText);
+  
   textSize(35);
   textAlign(LEFT);
   String title = data.getColumnName(currentColumn);
@@ -128,7 +133,7 @@ void drawYearLabels() {
       float x = map(years[row], yearMin, yearMax, plotX1, plotX2);
       // changing year labels to georgia font
       textSize(10);
-      textFont(xAxisNumericFont);
+      
       text(years[row], x, plotY2 + 10);
       line(x, plotY1, x, plotY2);
     }
@@ -154,8 +159,7 @@ void drawVolumeLabels() {
         } else {
           textAlign(RIGHT, CENTER);         // Center vertically
         }
-        // adding font here too
-        textFont(xAxisNumericFont);
+ 
         text(floor(v), plotX1 - 10, y);
         line(plotX1 - 4, y, plotX1, y);     // Draw major tick
       } else {
