@@ -125,6 +125,11 @@ void draw() {
   
   
    drawYearLabels();
+    
+   drawDataHighlight(currentColumn);
+
+
+// closing draw()
 }
 
 
@@ -260,6 +265,26 @@ void drawDataPoints(int col) {
 }
 
 
+
+
+void drawDataHighlight(int col) {
+  for (int row = 0; row < rowCount; row++) {
+    if (data.isValid(row, col)) {
+      float value = data.getFloat(row, col);
+      float x = map(years[row], yearMin, yearMax, plotX1, plotX2);
+      float y = map(value, dataMin, dataMax, plotY2, plotY1);
+      if (dist(mouseX, mouseY, x, y) < 3) {
+        strokeWeight(10);
+        point(x, y);
+        fill(0);
+        textSize(10);
+        textAlign(CENTER);
+        text(nf(value, 0, 2) + " (" + years[row] + ")", x, y-8);
+        textAlign(LEFT);
+      }
+    }
+  }
+}
 
 
 void keyPressed() {
