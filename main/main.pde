@@ -27,7 +27,7 @@ PFont allText;
 void setup() {
   size(720, 405);
   
-  data = new FloatTable("milk-tea-coffee2.tsv");
+  data = new FloatTable("output.tsv");
   rowCount = data.getRowCount();
   columnCount = data.getColumnCount();
   
