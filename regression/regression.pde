@@ -18,7 +18,7 @@ PFont plotFont;
 
 
 void setup() {
-  size(720, 405);
+  size(1000, 405);
   
   data = new FloatTable("milk-tea-coffee.tsv");
   rowCount = data.getRowCount();
@@ -45,6 +45,7 @@ void setup() {
 
 
 void draw() {
+  
   background(224);
   
   // Show the plot area as a white box  
@@ -59,9 +60,15 @@ void draw() {
   drawYearLabels();
   drawVolumeLabels();
 
-  stroke(#5679C1);
-  strokeWeight(5);
+  stroke(255, 0, 0);
+  strokeWeight(8);
   drawDataPoints(currentColumn);
+  stroke(0, 0, 255);
+  drawRegressionLine(currentColumn);
+  
+//  textSize(20);
+//  String mouse = mouseX + "  " + mouseY;
+//  text(mouse, 100, 100);
 }
 
 
@@ -132,6 +139,45 @@ void drawDataPoints(int col) {
       point(x, y);
     }
   }
+}
+
+
+void drawRegressionLine(int col)
+{
+  if(col == 0)
+  {
+    // text("zero", 500, 200);
+    fill(0);
+    strokeWeight(6);
+    strokeJoin(ROUND);
+    beginShape();
+    vertex(50, 128);
+    vertex(951, 210);
+    endShape();
+  }
+  if(col == 1)
+  {
+    //text("one", 500, 200);
+     fill(0);
+    strokeWeight(6);
+    strokeJoin(ROUND);
+    beginShape();
+    vertex(51, 299);
+    vertex(949,313 );
+    endShape();
+  }
+  if(col == 2)
+  {
+    //text("two", 500, 200);
+    fill(0);
+    strokeWeight(6);
+    strokeJoin(ROUND);
+    beginShape();
+    vertex(51, 160);
+    vertex(949,216 );
+    endShape();
+  }
+
 }
 
 
